@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>无标题文档</title>
+<link href="css/selectbox.css" type="text/css" rel="stylesheet"/>
+<script src="jquery-1.4.js"></script>
+<script src="js/changtopy.js"></script>
+<script src="js/getpyszm.js"></script>
+<script src="js/jquery.multiseselect.js"></script>
+<script>
+	$(function(){
+	//多选下拉列表
+		$("#test2").multiseSelect({width:"200px"})
+	});
+	function getCheckValue(){
+		alert($("#test2").getMultiseSelectCheckValue());
+	}
+	function getCheckText(){
+		alert($("#test2").getMultiseSelectCheckText());
+	}
+	function getUnCheckValue(){
+		alert($("#test2").getMultiseUnselectCheckValue());
+	}
+	function getUnCheckText(){
+		alert($("#test2").getMultiseUnselectCheckText());
+	}
+	function getAllCheckValue(){
+		alert($("#test2").getMultiseSelectAllValue());
+	}
+	function getAllCheckText(){
+		alert($("#test2").getMultiseSelectAllText());
+	}
+	function createMultiseSelect(){
+		var valItem = new Array();
+		valItem[0] = 1;
+		valItem[1] = 2;
+		valItem[2] = 3;
+		var txtItem = new Array();
+		txtItem[0] = "aaa";
+		txtItem[1] = "bbb";
+		txtItem[2] = "ccc";
+		$("#testcreate").createMultiseSelect({
+			id:"createtest",
+			width:"200px",
+			valItem:valItem,
+			txtItem:txtItem
+		});
+	}
+  function changeMultiseSelect(){
+  		var valItem = new Array();
+		valItem[0] = 1;
+		valItem[1] = 2;
+		valItem[2] = 3;
+		var txtItem = new Array();
+		txtItem[0] = "aaa1";
+		txtItem[1] = "bbb2";
+		txtItem[2] = "ccc3";
+		var selectItems = new Array();
+		selectItems[0] = 1;
+		selectItems[1] = 2;
+		$("#test2").multiseSelectLoaddingOn();alert(111);
+		$("#test2").changeMultiseSelectContent({
+				valItem:valItem,
+				txtItem:txtItem,
+				selectItem:selectItems,
+				changeFunction:changeTest
+		});
+		$("#test2").multiseSelectLoaddingOff();
+  }
+  function changeTest(id){
+  	alert(id);
+  }
+  function setInputContent(){
+  	var t = new Array();
+	t[0] = 4;
+  	$("#test2").multiseSelectClearSelect(t);
+  }
+</script>
+</head>
+
+<body>
+<table>
+<tr>
+<td> 
+	<select id="test2" multiple="multiple" onchange="changeTest(id)">
+		<option value="1" selected="selected">小张</option>
+		<option value="2">小王</option>
+		<option value="3">小李</option>
+		<option value="4" selected="selected">小马</option>
+		<option value="5">小赵</option>
+	</select>
+</td>
+
+<td>
+	<div id="testcreate"></div>
+</td>
+</tr>
+</table>
+<input type="button" value="选中的值value" onclick="getCheckValue()"/><br />
+<input type="button" value="选中的值text" onclick="getCheckText()"/><br />
+<input type="button" value="没选中的值value" onclick="getUnCheckValue()"/><br />
+<input type="button" value="没选中的值text" onclick="getUnCheckText()"/><br />
+<input type="button" value="所有的值value" onclick="getAllCheckValue()"/><br />
+<input type="button" value="所有的值text" onclick="getAllCheckText()"/><br />
+<input type="button" value="动态创建" onclick="createMultiseSelect()"/><br />
+<input type="button" value="动态改变下拉列表内的值" onclick="changeMultiseSelect()"/><br />
+<input type="button" value="动态改变下输入框的内容" onclick="setInputContent()" />
+</body>
+</html>
